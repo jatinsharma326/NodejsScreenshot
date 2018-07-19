@@ -1,19 +1,11 @@
 
-const webshot = require('webshot');
-const opn = require('opn');
-opn('http://youtube.com');
-opn('http://youtube.com',{app:'firefox'});
-opn('http://youtube.com',{app:['google chrome','--incognito']});
-const options = 
-{
-    streamType:  "png",
-    windowSize:{
-        width:1024,
-        height:786
-    },
-        shotSize:{
-            width:"all",
-            height:"all"
-        }
-    
-};
+const Pageres = require('pageres');
+
+const pageres = new Pageres({delay: 2})
+	.src('https://www.facebook.com/', ['480x320', '1024x768', '1280x1024','iphone 5s'], {crop: true})
+	.src('https://www.youtube.com/', ['1280x1024', '1920x1080'])
+	.src('https://www.amazon.in/', ['1024x768'])
+
+	.dest('D:/Projects/screenshots')
+	.run()
+	.then(() => console.log('done'));
